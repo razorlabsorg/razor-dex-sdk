@@ -18,6 +18,14 @@
   "files": [
     "dist"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "dev": "tsup --watch",
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
@@ -36,6 +44,7 @@
     "access": "public"
   },
   "devDependencies": {
+    "@types/big.js": "^6.2.2",
     "@types/node": "^22.1.0",
     "prettier": "^3.3.3",
     "tsup": "^8.2.4",
@@ -43,6 +52,9 @@
   },
   "dependencies": {
     "@ethersproject/bignumber": "^5.7.0",
-    "tiny-invariant": "^1.3.3"
+    "big.js": "^6.2.1",
+    "decimal.js-light": "^2.5.1",
+    "tiny-invariant": "^1.3.3",
+    "toformat": "^2.0.0"
   }
 }
