@@ -1,0 +1,44 @@
+{
+  "name": "@razorlabs/dex-sdk",
+  "description": "⚒️ An SDK for building applications on top of Razor DEX",
+  "repository": "https://github.com/razorlabsorg/dex-sdk",
+  "keywords": [
+    "Razor",
+    "DEX",
+    "DEX SDK",
+    "SDK",
+    "Movement",
+    "aptos",
+    "sui"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "module": "dist/index.mjs",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
+    "clean": "rm -rf dist",
+    "ts-node": "ts-node",
+    "docs": "typedoc --entryPoints src/index.ts",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "build": "tsup"
+  },
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "packageManager": "pnpm@9.5.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/node": "^22.1.0",
+    "prettier": "^3.3.3",
+    "tsup": "^8.2.4",
+    "typescript": "^5.5.4"
+  }
+}
