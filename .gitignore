@@ -10,3 +10,7 @@
 node_modules
 
 dist
+
+aptos-swap-sdk
+sdk-core
+swap-sdk-core
