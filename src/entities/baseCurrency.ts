@@ -4,6 +4,7 @@ import { Token } from './token';
 export abstract class BaseCurrency {
   public abstract readonly isNative: boolean;
   public abstract readonly isToken: boolean;
+  public abstract readonly isFungibleAsset: boolean;
   public readonly chainId: number;
   public readonly decimals: number;
   public readonly symbol: string;

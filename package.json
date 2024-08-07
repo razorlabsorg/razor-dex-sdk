@@ -51,6 +51,7 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
+    "@aptos-labs/ts-sdk": "^1.26.0",
     "@ethersproject/bignumber": "^5.7.0",
     "big.js": "^6.2.1",
     "decimal.js-light": "^2.5.1",

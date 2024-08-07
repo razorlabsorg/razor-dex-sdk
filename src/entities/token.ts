@@ -1,4 +1,3 @@
-import { BigNumber } from '@ethersproject/bignumber';
 import { BaseCurrency } from './baseCurrency';
 import invariant from 'tiny-invariant';
 import { Currency } from './currency';
@@ -15,11 +14,9 @@ export interface SerializedToken {
 export class Token extends BaseCurrency {
   public readonly isNative: false = false as const;
   public readonly isToken: true = true as const;
+  public readonly isFungibleAsset: boolean;
 
   public readonly address: string;
-
-  public readonly buyFeeBps?: BigNumber;
-  public readonly sellFeeBps?: BigNumber;
   public readonly projectLink?: string;
 
   public constructor(
@@ -27,21 +24,14 @@ export class Token extends BaseCurrency {
     address: string,
     decimals: number,
     symbol: string,
+    isFungibleAsset: boolean,
     name?: string,
-    buyFeeBps?: BigNumber,
-    sellFeeBps?: BigNumber,
     projectLink?: string,
   ) {
     super(chainId, decimals, symbol, name);
     this.address = address;
-    if (buyFeeBps) {
-      invariant(buyFeeBps.gte(BigNumber.from(0)), 'NON-NEGATIVE FOT FEES');
-    }
-    if (sellFeeBps) {
-      invariant(sellFeeBps.gte(BigNumber.from(0)), 'NON-NEGATIVE FOT FEES');
-    }
-    this.buyFeeBps = buyFeeBps;
-    this.sellFeeBps = sellFeeBps;
+    this.isFungibleAsset = isFungibleAsset;
+    
     this.projectLink = projectLink;
   }
 
