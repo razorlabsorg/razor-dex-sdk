@@ -1,14 +1,14 @@
-import { parseTypeTag, TypeTagStruct } from "@aptos-labs/ts-sdk";
-import { NativeCurrency, SerializedToken } from "../entities";
-import { Asset } from "./asset";
-import { Coin } from "./coin";
+import { parseTypeTag, TypeTagStruct } from '@aptos-labs/ts-sdk';
+import { NativeCurrency, SerializedToken } from '../entities';
+import { Asset } from './asset';
+import { Coin } from './coin';
 
 const MOVE_COIN = '0x1::aptos_coin::AptosCoin' as const;
 
 export class MoveCoin extends NativeCurrency {
   address: typeof MOVE_COIN = MOVE_COIN;
 
-  structTag: TypeTagStruct = parseTypeTag(MOVE_COIN) as TypeTagStruct
+  structTag: TypeTagStruct = parseTypeTag(MOVE_COIN) as TypeTagStruct;
 
   projectLink = 'https://movementlabs.xyz';
 
@@ -30,13 +30,13 @@ export class MoveCoin extends NativeCurrency {
   public equals(other: Asset): boolean {
     if (other.chainId === this.chainId) {
       if (other.isNative || other.address === this.address) {
-        return true
+        return true;
       }
 
-      return false
+      return false;
     }
 
-    return false
+    return false;
   }
 
   get wrapped(): Coin {
@@ -46,12 +46,12 @@ export class MoveCoin extends NativeCurrency {
       this.decimals,
       this.symbol,
       this.name,
-      this.projectLink
-    )
+      this.projectLink,
+    );
   }
 
   public sortsBefore(other: Asset): boolean {
-    return this.address.toLowerCase() < other.address.toLowerCase()
+    return this.address.toLowerCase() < other.address.toLowerCase();
   }
 
   public get serialize(): SerializedToken {
@@ -62,6 +62,6 @@ export class MoveCoin extends NativeCurrency {
       symbol: this.symbol,
       name: this.name,
       projectLink: this.projectLink,
-    }
+    };
   }
 }

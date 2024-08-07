@@ -1,4 +1,4 @@
-import { Percent } from "./entities";
+import { Percent } from './entities';
 
 // exports for external consumption
 export type BigintIsh = bigint | string | number;
@@ -32,5 +32,5 @@ export const MaxUint256 = BigInt(
   '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
 );
 
-export const ZERO_PERCENT = new Percent('0')
-export const ONE_HUNDRED_PERCENT = new Percent('1')
+export const ZERO_PERCENT = new Percent('0');
+export const ONE_HUNDRED_PERCENT = new Percent('1');

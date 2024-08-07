@@ -31,7 +31,7 @@ export class Token extends BaseCurrency {
     super(chainId, decimals, symbol, name);
     this.address = address;
     this.isFungibleAsset = isFungibleAsset;
-    
+
     this.projectLink = projectLink;
   }
 

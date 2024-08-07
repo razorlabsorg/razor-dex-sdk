@@ -1,58 +1,87 @@
-import invariant from 'tiny-invariant'
+import invariant from 'tiny-invariant';
 
-import { Pair } from './pair'
-import { Asset } from '../assets'
-import { Price } from '../entities'
+import { Pair } from './pair';
+import { Asset } from '../assets';
+import { Price } from '../entities';
 
 export class Route<TInput extends Asset, TOutput extends Asset> {
-  public readonly pairs: Pair[]
-  public readonly path: Asset[]
-  public readonly input: TInput
-  public readonly output: TOutput
+  public readonly pairs: Pair[];
+  public readonly path: Asset[];
+  public readonly input: TInput;
+  public readonly output: TOutput;
 
   public constructor(pairs: Pair[], input: TInput, output: TOutput) {
-    invariant(pairs.length > 0, 'PAIRS')
-    const chainId: number = pairs[0].chainId
+    invariant(pairs.length > 0, 'PAIRS');
+    const chainId: number = pairs[0].chainId;
     invariant(
       pairs.every((pair) => pair.chainId === chainId),
-      'CHAIN_IDS'
-    )
+      'CHAIN_IDS',
+    );
 
-    const wrappedInput = input.wrapped
-    invariant(pairs[0].involvesToken(wrappedInput), 'INPUT')
-    invariant(typeof output === 'undefined' || pairs[pairs.length - 1].involvesToken(output.wrapped), 'OUTPUT')
+    const wrappedInput = input.wrapped;
+    invariant(pairs[0].involvesToken(wrappedInput), 'INPUT');
+    invariant(
+      typeof output === 'undefined' ||
+        pairs[pairs.length - 1].involvesToken(output.wrapped),
+      'OUTPUT',
+    );
 
-    const path: Asset[] = [wrappedInput]
+    const path: Asset[] = [wrappedInput];
     for (const [i, pair] of pairs.entries()) {
-      const currentInput = path[i]
-      invariant(currentInput.equals(pair.token0) || currentInput.equals(pair.token1), 'PATH')
-      const output = currentInput.equals(pair.token0) ? pair.token1 : pair.token0
-      path.push(output)
+      const currentInput = path[i];
+      invariant(
+        currentInput.equals(pair.token0) || currentInput.equals(pair.token1),
+        'PATH',
+      );
+      const output = currentInput.equals(pair.token0)
+        ? pair.token1
+        : pair.token0;
+      path.push(output);
     }
 
-    this.pairs = pairs
-    this.path = path
-    this.input = input
-    this.output = output
+    this.pairs = pairs;
+    this.path = path;
+    this.input = input;
+    this.output = output;
   }
 
-  private _midPrice: Price<TInput, TOutput> | null = null
+  private _midPrice: Price<TInput, TOutput> | null = null;
 
   public get midPrice(): Price<TInput, TOutput> {
-    if (this._midPrice !== null) return this._midPrice
-    const prices: Price<Asset, Asset>[] = []
+    if (this._midPrice !== null) return this._midPrice;
+    const prices: Price<Asset, Asset>[] = [];
     for (const [i, pair] of this.pairs.entries()) {
       prices.push(
         this.path[i].equals(pair.token0)
-          ? new Price(pair.reserve0.currency, pair.reserve1.currency, pair.reserve0.quotient, pair.reserve1.quotient)
-          : new Price(pair.reserve1.currency, pair.reserve0.currency, pair.reserve1.quotient, pair.reserve0.quotient)
-      )
+          ? new Price(
+              pair.reserve0.currency,
+              pair.reserve1.currency,
+              pair.reserve0.quotient,
+              pair.reserve1.quotient,
+            )
+          : new Price(
+              pair.reserve1.currency,
+              pair.reserve0.currency,
+              pair.reserve1.quotient,
+              pair.reserve0.quotient,
+            ),
+      );
     }
-    const reduced = prices.slice(1).reduce((accumulator, currentValue) => accumulator.multiply(currentValue), prices[0])
-    return (this._midPrice = new Price(this.input, this.output, reduced.denominator, reduced.numerator))
+    const reduced = prices
+      .slice(1)
+      .reduce(
+        (accumulator, currentValue) => accumulator.multiply(currentValue),
+        prices[0],
+      );
+    return (this._midPrice = new Price(
+      this.input,
+      this.output,
+      reduced.denominator,
+      reduced.numerator,
+    ));
   }
 
   public get chainId(): number {
-    return this.pairs[0].chainId
+    return this.pairs[0].chainId;
   }
 }
