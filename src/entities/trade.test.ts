@@ -21,7 +21,7 @@ describe('Trade', () => {
   const pair_1_2 = new Pair(new TokenAmount(token1, JSBI.BigInt(1200)), new TokenAmount(token2, JSBI.BigInt(1000)))
   const pair_1_3 = new Pair(new TokenAmount(token1, JSBI.BigInt(1200)), new TokenAmount(token3, JSBI.BigInt(1300)))
 
-  const pair_weth_0 = new Pair(
+  const pair_wmove_0 = new Pair(
     new TokenAmount(WMOVE[ChainId.PORTO_TESTNET], JSBI.BigInt(1000)),
     new TokenAmount(token0, JSBI.BigInt(1000))
   )
@@ -30,7 +30,7 @@ describe('Trade', () => {
 
   it('can be constructed with MOVE as input', () => {
     const trade = new Trade(
-      new Route([pair_weth_0], MOVE),
+      new Route([pair_wmove_0], MOVE),
       CurrencyAmount.move(JSBI.BigInt(100)),
       TradeType.EXACT_INPUT
     )
@@ -39,7 +39,7 @@ describe('Trade', () => {
   })
   it('can be constructed with MOVE as input for exact output', () => {
     const trade = new Trade(
-      new Route([pair_weth_0], MOVE, token0),
+      new Route([pair_wmove_0], MOVE, token0),
       new TokenAmount(token0, JSBI.BigInt(100)),
       TradeType.EXACT_OUTPUT
     )
@@ -49,7 +49,7 @@ describe('Trade', () => {
 
   it('can be constructed with MOVE as output', () => {
     const trade = new Trade(
-      new Route([pair_weth_0], token0, MOVE),
+      new Route([pair_wmove_0], token0, MOVE),
       CurrencyAmount.move(JSBI.BigInt(100)),
       TradeType.EXACT_OUTPUT
     )
@@ -58,7 +58,7 @@ describe('Trade', () => {
   })
   it('can be constructed with MOVE as output for exact input', () => {
     const trade = new Trade(
-      new Route([pair_weth_0], token0, MOVE),
+      new Route([pair_wmove_0], token0, MOVE),
       new TokenAmount(token0, JSBI.BigInt(100)),
       TradeType.EXACT_INPUT
     )
@@ -145,7 +145,7 @@ describe('Trade', () => {
 
     it('works for MOVE currency input', () => {
       const result = Trade.bestTradeExactIn(
-        [pair_weth_0, pair_0_1, pair_0_3, pair_1_3],
+        [pair_wmove_0, pair_0_1, pair_0_3, pair_1_3],
         CurrencyAmount.move(JSBI.BigInt(100)),
         token3
       )
@@ -159,7 +159,7 @@ describe('Trade', () => {
     })
     it('works for MOVE currency output', () => {
       const result = Trade.bestTradeExactIn(
-        [pair_weth_0, pair_0_1, pair_0_3, pair_1_3],
+        [pair_wmove_0, pair_0_1, pair_0_3, pair_1_3],
         new TokenAmount(token3, JSBI.BigInt(100)),
         MOVE
       )
@@ -370,7 +370,7 @@ describe('Trade', () => {
 
     it('works for MOVE currency input', () => {
       const result = Trade.bestTradeExactOut(
-        [pair_weth_0, pair_0_1, pair_0_3, pair_1_3],
+        [pair_wmove_0, pair_0_1, pair_0_3, pair_1_3],
         MOVE,
         new TokenAmount(token3, JSBI.BigInt(100))
       )
@@ -384,7 +384,7 @@ describe('Trade', () => {
     })
     it('works for MOVE currency output', () => {
       const result = Trade.bestTradeExactOut(
-        [pair_weth_0, pair_0_1, pair_0_3, pair_1_3],
+        [pair_wmove_0, pair_0_1, pair_0_3, pair_1_3],
         token3,
         CurrencyAmount.move(JSBI.BigInt(100))
       )

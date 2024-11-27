@@ -4,9 +4,9 @@ import { MoveType } from '../constants'
 import { validateMoveTypeInstance } from '../utils'
 
 /**
- * A currency is any fungible financial instrument on Ethereum, including Ether and all ERC20 tokens.
+ * A currency is any fungible financial instrument on Movement, including Move and all Fungible Asset tokens.
  *
- * The only instance of the base class `Currency` is Ether.
+ * The only instance of the base class `Currency` is Move.
  */
 export class Currency {
   public readonly decimals: number

@@ -45,7 +45,7 @@ export interface SwapParameters {
 }
 
 /**
- * Represents the Uniswap V2 Router, and has static methods for helping execute trades.
+ * Represents the Razor AMM Router, and has static methods for helping execute trades.
  */
 export abstract class Router {
   /**
@@ -61,10 +61,10 @@ export abstract class Router {
     trade: Trade,
     options: TradeOptions | TradeOptionsDeadline,
   ): SwapParameters {
-    const etherIn = trade.inputAmount.currency === MOVE
-    const etherOut = trade.outputAmount.currency === MOVE
-    // the router does not support both ether in and out
-    invariant(!(etherIn && etherOut), 'MOVE_IN_OUT')
+    const moveIn = trade.inputAmount.currency === MOVE
+    const moveOut = trade.outputAmount.currency === MOVE
+    // the router does not support both move in and out
+    invariant(!(moveIn && moveOut), 'MOVE_IN_OUT')
     invariant(!('ttl' in options) || options.ttl > 0, 'TTL')
 
     const to: string = options.recipient
@@ -80,10 +80,10 @@ export abstract class Router {
     let args: InputEntryFunctionData['functionArguments']
     switch (trade.tradeType) {
       case TradeType.EXACT_INPUT:
-        if (etherIn) {
+        if (moveIn) {
           methodName = 'swap_exact_move_for_tokens'
           args = [amountIn, amountOut, path, to, deadline]
-        } else if (etherOut) {
+        } else if (moveOut) {
           methodName = 'swap_exact_tokens_for_move'
           args = [amountIn, amountOut, path, to, deadline]
         } else {
@@ -92,10 +92,10 @@ export abstract class Router {
         }
         break
       case TradeType.EXACT_OUTPUT:
-        if (etherIn) {
+        if (moveIn) {
           methodName = 'swap_move_for_exact_tokens'
           args = [amountIn, amountOut, path, to, deadline]
-        } else if (etherOut) {
+        } else if (moveOut) {
           methodName = 'swap_tokens_for_exact_move'
           args = [amountOut, amountIn, path, to, deadline]
         } else {
