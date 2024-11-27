@@ -1,66 +1,76 @@
-import { BaseCurrency } from './baseCurrency';
-import invariant from 'tiny-invariant';
-import { Currency } from './currency';
+import invariant from 'tiny-invariant'
+import { ChainId } from '../constants'
+import { Currency } from './currency'
 
-export interface SerializedToken {
-  chainId: number;
-  address: string;
-  decimals: number;
-  symbol: string;
-  name?: string;
-  projectLink?: string;
-}
-
-export class Token extends BaseCurrency {
-  public readonly isNative: false = false as const;
-  public readonly isToken: true = true as const;
-  public readonly isFungibleAsset: boolean;
-
-  public readonly address: string;
-  public readonly projectLink?: string;
+/**
+ * Represents an ERC20 token with a unique address and some metadata.
+ */
+export class Token extends Currency {
+  public readonly chainId: ChainId
+  public readonly address: string
+  public readonly projectLink?: string
 
   public constructor(
-    chainId: number,
+    chainId: ChainId,
     address: string,
     decimals: number,
-    symbol: string,
-    isFungibleAsset: boolean,
+    symbol?: string,
     name?: string,
-    projectLink?: string,
+    projectLink?: string
   ) {
-    super(chainId, decimals, symbol, name);
-    this.address = address;
-    this.isFungibleAsset = isFungibleAsset;
-
-    this.projectLink = projectLink;
+    super(decimals, symbol, name)
+    this.chainId = chainId
+    this.address = address
+    this.projectLink = projectLink
   }
 
-  public equals(other: Currency): boolean {
-    return (
-      other.isToken &&
-      this.chainId === other.chainId &&
-      this.address === other.address
-    );
+  /**
+   * Returns true if the two tokens are equivalent, i.e. have the same chainId and address.
+   * @param other other token to compare
+   */
+  public equals(other: Token): boolean {
+    // short circuit on reference equality
+    if (this === other) {
+      return true
+    }
+    return this.chainId === other.chainId && this.address === other.address
   }
 
+  /**
+   * Returns true if the address of this token sorts before the address of the other token
+   * @param other other token to compare
+   * @throws if the tokens have the same address
+   * @throws if the tokens are on different chains
+   */
   public sortsBefore(other: Token): boolean {
-    invariant(this.chainId === other.chainId, 'CHAIN_IDS');
-    invariant(this.address !== other.address, 'ADDRESSES');
-    return this.address.toLowerCase() < other.address.toLowerCase();
+    invariant(this.chainId === other.chainId, 'CHAIN_IDS')
+    invariant(this.address !== other.address, 'ADDRESSES')
+    return this.address.toLowerCase() < other.address.toLowerCase()
   }
+}
 
-  public get wrapped(): Token {
-    return this;
+/**
+ * Compares two currencies for equality
+ */
+export function currencyEquals(currencyA: Currency, currencyB: Currency): boolean {
+  if (currencyA instanceof Token && currencyB instanceof Token) {
+    return currencyA.equals(currencyB)
+  } else if (currencyA instanceof Token) {
+    return false
+  } else if (currencyB instanceof Token) {
+    return false
+  } else {
+    return currencyA === currencyB
   }
+}
 
-  public get serialize(): SerializedToken {
-    return {
-      address: this.address,
-      chainId: this.chainId,
-      decimals: this.decimals,
-      symbol: this.symbol,
-      name: this.name,
-      projectLink: this.projectLink,
-    };
-  }
+export const WMOVE = {
+  [ChainId.PORTO_TESTNET]: new Token(
+    ChainId.PORTO_TESTNET,
+    '0x000000000000000000000000000000000000000000000000000000000000000a',
+    8,
+    'MOVE',
+    'Move Coin',
+    'https://movementlabs.xyz'
+  ),
 }

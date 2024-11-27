@@ -1,5 +1,5 @@
 {
-  "name": "@razorlabs/dex-sdk",
+  "name": "@razorlabs/amm-sdk",
   "description": "⚒️ An SDK for building applications on top of Razor DEX",
   "repository": "https://github.com/razorlabsorg/dex-sdk",
   "keywords": [
@@ -33,9 +33,10 @@
     "ts-node": "ts-node",
     "docs": "typedoc --entryPoints src/index.ts",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "test": "vitest run",
     "build": "tsup"
   },
-  "version": "0.0.1",
+  "version": "1.0.0",
   "engines": {
     "node": ">=16.0.0"
   },
@@ -46,15 +47,17 @@
   "devDependencies": {
     "@types/big.js": "^6.2.2",
     "@types/node": "^22.1.0",
+    "happy-dom": "^15.11.6",
     "prettier": "^3.3.3",
     "tsup": "^8.2.4",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "vitest": "^2.1.6"
   },
   "dependencies": {
-    "@aptos-labs/ts-sdk": "^1.26.0",
-    "@ethersproject/bignumber": "^5.7.0",
+    "@aptos-labs/ts-sdk": "^1.33.0",
     "big.js": "^6.2.1",
     "decimal.js-light": "^2.5.1",
+    "jsbi": "3.1.1",
     "tiny-invariant": "^1.3.3",
     "toformat": "^2.0.0"
   }
