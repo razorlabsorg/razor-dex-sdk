@@ -19,10 +19,10 @@ export enum Rounding {
 }
 
 export const AMM_RESOURCE_ACCOUNT =
-  '0x14560ccc9627de2cbf6bcb3f2e5a79cebd40163f773baa4407831cb07e46d3dd'
+  '0x190aae4e7b1b0bcecbe4c451179ac7e4a0a8ef4dad110f4947c59cb4d51fbca2'
 
 export const AMM_SIGNER_ACCOUNT =
-  '0xfb0c65c184eace0f6f64bf742837c3fdf425dd17ccf552ba63a59ef3fe195488'
+  '0xbd3685d014b9790bcc168ba4bced996b3724a67ade4d4b9cab913ce6564e7e4'
 
 export const FACTORY_ADDRESS = `${AMM_RESOURCE_ACCOUNT}::factory`
 
