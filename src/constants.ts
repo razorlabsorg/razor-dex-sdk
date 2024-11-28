@@ -18,13 +18,13 @@ export enum Rounding {
   ROUND_UP,
 }
 
-export const AMM_RESOURCE_ACCOUNT =
-  '0x190aae4e7b1b0bcecbe4c451179ac7e4a0a8ef4dad110f4947c59cb4d51fbca2'
+export const AMM_MODULE_ADDRESS =
+  '0xe48f7bbd403acf5f35ccc8cac01438226210887efdfee3747b7e996be1d062a6'
 
-export const AMM_SIGNER_ACCOUNT =
-  '0xbd3685d014b9790bcc168ba4bced996b3724a67ade4d4b9cab913ce6564e7e4'
+export const AMM_SIGNER =
+  '0xc4a819d5a8c98b7a047021dd05d5291199baad1813a549758e00527d1289b56e'
 
-export const FACTORY_ADDRESS = `${AMM_RESOURCE_ACCOUNT}::factory`
+export const FACTORY_ADDRESS = `${AMM_MODULE_ADDRESS}::factory`
 
 export const FACTORY_ADDRESS_MAP = {
   [ChainId.PORTO_TESTNET]: FACTORY_ADDRESS,

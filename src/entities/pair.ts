@@ -12,7 +12,7 @@ import {
   FEES_DENOMINATOR,
   FEES_NUMERATOR,
   ChainId,
-  AMM_SIGNER_ACCOUNT,
+  AMM_SIGNER,
 } from '../constants'
 import { sqrt, parseBigintIsh } from '../utils'
 import { InsufficientReservesError, InsufficientInputAmountError } from '../errors'
@@ -36,7 +36,7 @@ export const computePairAddress = ({
 }): string => {
   const rawSeed = getPairSeed(tokenA, tokenB)
   const seed = Hex.fromHexInput(rawSeed).toUint8Array()
-  const account = AccountAddress.from(AMM_SIGNER_ACCOUNT)
+  const account = AccountAddress.from(AMM_SIGNER)
   const address = createObjectAddress(account, seed)
 
   return address.toString()

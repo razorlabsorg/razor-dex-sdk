@@ -1,7 +1,7 @@
 import { TokenAmount } from './entities/fractions/tokenAmount'
 import { Pair } from './entities/pair'
 import invariant from 'tiny-invariant'
-import { AMM_RESOURCE_ACCOUNT, ChainId } from './constants'
+import { AMM_MODULE_ADDRESS, ChainId } from './constants'
 import { Token } from './entities/token'
 import { Aptos, AptosConfig, InputViewFunctionData } from '@aptos-labs/ts-sdk'
 
@@ -34,7 +34,7 @@ export const getReserves = (pairAddress: string): InputViewFunctionData => {
   return {
     typeArguments: [],
     functionArguments: [pairAddress],
-    function: `${AMM_RESOURCE_ACCOUNT}::pair::get_reserves`,
+    function: `${AMM_MODULE_ADDRESS}::pair::get_reserves`,
   }
 }
 
