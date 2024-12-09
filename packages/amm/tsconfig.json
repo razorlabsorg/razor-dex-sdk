@@ -1,8 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Default",
-  "include": ["src"],
-  "exclude": ["./dist/**"],
+  "include": ["./src"],
+  "exclude": ["**/*.test.ts", "./dist/**"],
   "compilerOptions": {
     "composite": false,
     "declaration": true,
@@ -17,20 +17,9 @@
     "preserveWatchOutput": true,
     "skipLibCheck": true,
     "strict": true,
+    "rootDir": "./src",
     "outDir": "./dist",
     "target": "es2020",
-    "module": "esnext",
-    "importHelpers": true,
-    "sourceMap": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictPropertyInitialization": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
     "resolveJsonModule": true,
-    "types": ["vitest/globals"]
   }
 }

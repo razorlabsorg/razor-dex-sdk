@@ -1,0 +1,49 @@
+{
+  "name": "@razorlabs/amm-sdk",
+  "license": "MIT",
+  "version": "3.1.3",
+  "description": "🛠 An SDK for building applications on top of RazorDEX.",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/razorlabs/razor-dex-sdk.git",
+    "directory": "packages/amm"
+  },
+  "keywords": [
+    "RazorLabs",
+    "RazorDEX",
+    "amm",
+    "amm-sdk"
+  ],
+  "module": "dist/index.mjs",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest --run",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "semi": false,
+    "singleQuote": true
+  },
+  "dependencies": {
+    "@aptos-labs/ts-sdk": "^1.33.1",
+    "@razorlabs/swap-sdk-core": "workspace:*",
+    "big.js": "5.2.2",
+    "decimal.js-light": "2.5.0",
+    "jsbi": "3.1.4",
+    "tiny-invariant": "1.1.0",
+    "toformat": "2.0.0"
+  },
+  "devDependencies": {
+    "@types/big.js": "4.0.5"
+  }
+}

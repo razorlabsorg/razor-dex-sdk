@@ -6,7 +6,7 @@ export default defineConfig((options) => ({
     index: './src/index.ts',
   },
   format: ['esm', 'cjs'],
-  dts: false,
+  dts: true,
   treeshake: true,
   splitting: true,
   clean: !options.watch,
