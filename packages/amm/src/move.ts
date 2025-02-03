@@ -8,11 +8,11 @@ import { ChainId, WMOVE } from './constants'
  */
 export class Move extends NativeCurrency {
   protected constructor(chainId: number) {
-    super(chainId, 18, 'MOVE', 'Move Coin')
+    super(chainId, 8, 'MOVE', 'Move Coin')
   }
 
   public get wrapped(): Token {
-    const wmove = WMOVE[this.chainId as ChainId.APTOS_TESTNET | ChainId.BARDOCK_TESTNET | ChainId.MAINNET]
+    const wmove = WMOVE[this.chainId as ChainId.BARDOCK_TESTNET]
 
     invariant(!!wmove, 'WRAPPED')
 

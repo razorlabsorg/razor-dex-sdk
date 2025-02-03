@@ -6,25 +6,19 @@ import { CurrencyAmount, Token } from '@razorlabs/swap-sdk-core'
 
 export function getNetworkRPCUrl(chainId: ChainId) {
   switch (chainId) {
-    case ChainId.APTOS_TESTNET:
-      return 'https://api.testnet.aptoslabs.com/v1'
     case ChainId.BARDOCK_TESTNET:
       return 'https://aptos.testnet.bardock.movementlabs.xyz/v1'
-    case ChainId.MAINNET:
     default:
-      return 'https://mainnet.movementnetwork.xyz/v1'
+      return 'https://aptos.testnet.bardock.movementlabs.xyz/v1'
   }
 }
 
 export function getNetworkIndexerUrl(chainId: ChainId) {
   switch (chainId) {
-    case ChainId.APTOS_TESTNET:
-      return 'https://api.testnet.aptoslabs.com/v1/graphql'
     case ChainId.BARDOCK_TESTNET:
-      return 'https://indexer.testnet.bardock.movementlabs.xyz/v1/graphql'
-    case ChainId.MAINNET:
+      return 'https://rpc.sentio.xyz/movement-testnet-indexer/v1/graphql'
     default:
-      return 'https://indexer.mainnet.movementnetwork.xyz/v1/graphql'
+      return 'https://rpc.sentio.xyz/movement-testnet-indexer/v1/graphql'
   }
 }
 
@@ -46,9 +40,7 @@ export const getReserves = (pairAddress: string): InputViewFunctionData => {
 }
 
 let TOKEN_DECIMALS_CACHE: { [chainId: number]: { [address: string]: number } } = {
-  [ChainId.APTOS_TESTNET]: {},
   [ChainId.BARDOCK_TESTNET]: {},
-  [ChainId.MAINNET]: {},
 }
 
 /**
