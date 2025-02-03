@@ -1,5 +1,4 @@
 import invariant from 'tiny-invariant'
-import JSBI from 'jsbi'
 import _Big from 'big.js'
 import toFormat from 'toformat'
 import { Currency } from '../currency'
@@ -13,10 +12,10 @@ const Big = toFormat(_Big)
 export class CurrencyAmount<T extends Currency> extends Fraction {
   public readonly currency: T
 
-  public readonly decimalScale: JSBI
+  public readonly decimalScale: bigint
 
   /**
-   * Returns a new currency amount instance from the unitless amount of token, i.e. the raw amount
+   * Returns a new currency amount instance from the unit-less amount of token, i.e. the raw amount
    * @param currency the currency in the amount
    * @param rawAmount the raw token or ether amount
    */
@@ -40,9 +39,9 @@ export class CurrencyAmount<T extends Currency> extends Fraction {
 
   protected constructor(currency: T, numerator: BigintIsh, denominator?: BigintIsh) {
     super(numerator, denominator)
-    invariant(JSBI.lessThanOrEqual(this.quotient, MaxU256), 'AMOUNT')
+    invariant(this.quotient <= MaxU256, 'AMOUNT')
     this.currency = currency
-    this.decimalScale = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(currency.decimals))
+    this.decimalScale = 10n ** BigInt(currency.decimals)
   }
 
   public add(other: CurrencyAmount<T>): CurrencyAmount<T> {

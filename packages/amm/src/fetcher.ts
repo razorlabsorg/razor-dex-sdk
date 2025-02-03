@@ -6,17 +6,25 @@ import { CurrencyAmount, Token } from '@razorlabs/swap-sdk-core'
 
 export function getNetworkRPCUrl(chainId: ChainId) {
   switch (chainId) {
-    case ChainId.PORTO_TESTNET:
+    case ChainId.APTOS_TESTNET:
+      return 'https://api.testnet.aptoslabs.com/v1'
+    case ChainId.BARDOCK_TESTNET:
+      return 'https://aptos.testnet.bardock.movementlabs.xyz/v1'
+    case ChainId.MAINNET:
     default:
-      return 'https://aptos.testnet.porto.movementlabs.xyz/v1'
+      return 'https://mainnet.movementnetwork.xyz/v1'
   }
 }
 
 export function getNetworkIndexerUrl(chainId: ChainId) {
   switch (chainId) {
-    case ChainId.PORTO_TESTNET:
+    case ChainId.APTOS_TESTNET:
+      return 'https://api.testnet.aptoslabs.com/v1/graphql'
+    case ChainId.BARDOCK_TESTNET:
+      return 'https://indexer.testnet.bardock.movementlabs.xyz/v1/graphql'
+    case ChainId.MAINNET:
     default:
-      return 'https://indexer.testnet.porto.movementnetwork.xyz/v1/graphql'
+      return 'https://indexer.mainnet.movementnetwork.xyz/v1/graphql'
   }
 }
 
@@ -38,7 +46,9 @@ export const getReserves = (pairAddress: string): InputViewFunctionData => {
 }
 
 let TOKEN_DECIMALS_CACHE: { [chainId: number]: { [address: string]: number } } = {
-  [ChainId.PORTO_TESTNET]: {},
+  [ChainId.APTOS_TESTNET]: {},
+  [ChainId.BARDOCK_TESTNET]: {},
+  [ChainId.MAINNET]: {},
 }
 
 /**
@@ -60,7 +70,7 @@ export abstract class Fetcher {
    */
   public static async fetchTokenData(
     chainId: ChainId,
-    address: string,
+    address: `0x${string}`,
     provider = getDefaultProvider(chainId),
     symbol: string,
     name?: string,

@@ -33,8 +33,8 @@ export class Native extends NativeCurrency {
     if (chainId in this.cache) {
       return this.cache[chainId]
     }
-    invariant(!!NATIVE[chainId], 'NATIVE_CURRENCY')
-    const { decimals, name, symbol } = NATIVE[chainId]
+    invariant(!!NATIVE[chainId as keyof typeof NATIVE], 'NATIVE_CURRENCY')
+    const { decimals, name, symbol } = NATIVE[chainId as keyof typeof WNATIVE]
     return (this.cache[chainId] = new Native({ chainId, decimals, symbol, name }))
   }
 

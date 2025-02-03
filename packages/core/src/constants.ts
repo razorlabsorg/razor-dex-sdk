@@ -1,7 +1,5 @@
-import JSBI from 'jsbi'
-
 // exports for external consumption
-export type BigintIsh = JSBI | number | string
+export type BigintIsh = bigint | number | string
 
 export enum TradeType {
   EXACT_INPUT,
@@ -14,20 +12,20 @@ export enum Rounding {
   ROUND_UP,
 }
 
-export const MINIMUM_LIQUIDITY = JSBI.BigInt(1000)
+export const MINIMUM_LIQUIDITY = 1000n
 
 // exports for internal consumption
-export const ZERO = JSBI.BigInt(0)
-export const ONE = JSBI.BigInt(1)
-export const TWO = JSBI.BigInt(2)
-export const THREE = JSBI.BigInt(3)
-export const FIVE = JSBI.BigInt(5)
-export const TEN = JSBI.BigInt(10)
-export const _100 = JSBI.BigInt(100)
-export const _9975 = JSBI.BigInt(9975)
-export const _10000 = JSBI.BigInt(10000)
+export const ZERO = 0n
+export const ONE = 1n
+export const TWO = 2n
+export const THREE = 3n
+export const FIVE = 5n
+export const TEN = 10n
+export const _100 = 100n
+export const _9975 = 9975n
+export const _10000 = 10000n
 
-export const MaxU256 = JSBI.BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
+export const MaxU256 = BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
 
 export enum MoveType {
   u8 = 'u8',
@@ -39,10 +37,10 @@ export enum MoveType {
 }
 
 export const MOVE_TYPE_MAXIMA = {
-  [MoveType.u8]: JSBI.BigInt('0xff'),
-  [MoveType.u16]: JSBI.BigInt('0xffff'),
-  [MoveType.u32]: JSBI.BigInt('0xffffffff'),
-  [MoveType.u64]: JSBI.BigInt('0xffffffffffffffff'),
-  [MoveType.u128]: JSBI.BigInt('0xffffffffffffffffffffffffffffffff'),
-  [MoveType.u256]: JSBI.BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'),
+  [MoveType.u8]: BigInt('0xff'),
+  [MoveType.u16]: BigInt('0xffff'),
+  [MoveType.u32]: BigInt('0xffffffff'),
+  [MoveType.u64]: BigInt('0xffffffffffffffff'),
+  [MoveType.u128]: BigInt('0xffffffffffffffffffffffffffffffff'),
+  [MoveType.u256]: BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'),
 }
