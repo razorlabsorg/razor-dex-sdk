@@ -35,7 +35,7 @@ export const getReserves = (pairAddress: string): InputViewFunctionData => {
   return {
     typeArguments: [],
     functionArguments: [pairAddress],
-    function: `${AMM_MODULE_ADDRESS}::pair::get_reserves`,
+    function: `${AMM_MODULE_ADDRESS}::amm_pair::get_reserves`,
   }
 }
 

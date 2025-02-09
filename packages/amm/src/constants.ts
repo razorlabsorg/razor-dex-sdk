@@ -12,7 +12,7 @@ export const AMM_MODULE_ADDRESS = '0xd7f96eefaebffd142905a66d68ea836927b56a95cb4
 
 export const AMM_SIGNER = '0xe4ee955f63c300c35b62d74ad7f2784c3712b7125d99261fde503663fe492c0f'
 
-export const FACTORY_ADDRESS = `${AMM_MODULE_ADDRESS}::factory`
+export const FACTORY_ADDRESS = `${AMM_MODULE_ADDRESS}::amm_factory`
 
 export const FACTORY_ADDRESS_MAP = {
   [ChainId.BARDOCK_TESTNET]: FACTORY_ADDRESS,
