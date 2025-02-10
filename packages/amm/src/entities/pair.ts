@@ -26,7 +26,7 @@ const getPairSeed = (token0: Token, token1: Token): string => {
   }
 }
 
-export const computePairAddress = ({ tokenA, tokenB }: { tokenA: Token; tokenB: Token }): `0x${string}` => {
+export const computePairAddress = ({ tokenA, tokenB }: { tokenA: Token; tokenB: Token }): string => {
   const rawSeed = getPairSeed(tokenA, tokenB)
   const seed = Hex.fromHexInput(rawSeed).toUint8Array()
   const account = AccountAddress.from(AMM_SIGNER)
@@ -40,7 +40,7 @@ export class Pair {
 
   private readonly tokenAmounts: [CurrencyAmount<Token>, CurrencyAmount<Token>]
 
-  public static getAddress(tokenA: Token, tokenB: Token): `0x${string}` {
+  public static getAddress(tokenA: Token, tokenB: Token): string {
     return computePairAddress({ tokenA, tokenB })
   }
 

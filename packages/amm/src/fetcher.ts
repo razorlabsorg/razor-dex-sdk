@@ -62,7 +62,7 @@ export abstract class Fetcher {
    */
   public static async fetchTokenData(
     chainId: ChainId,
-    address: `0x${string}`,
+    address: string,
     provider = getDefaultProvider(chainId),
     symbol: string,
     name?: string,
