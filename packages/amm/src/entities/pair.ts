@@ -19,10 +19,12 @@ import { AMM_SIGNER } from '../constants'
 import { AccountAddress, createObjectAddress, Hex } from '@aptos-labs/ts-sdk'
 
 const getPairSeed = (token0: Token, token1: Token): string => {
+  const validatedToken0Address = AccountAddress.from(token0.address).toStringLong()
+  const validatedToken1Address = AccountAddress.from(token1.address).toStringLong()
   if (token0.sortsBefore(token1)) {
-    return token0.address + token1.address.slice(2)
+    return validatedToken0Address + validatedToken1Address.slice(2)
   } else {
-    return token1.address + token0.address.slice(2)
+    return validatedToken1Address + validatedToken0Address.slice(2)
   }
 }
 
