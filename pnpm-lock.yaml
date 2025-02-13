@@ -27,14 +27,14 @@ importers:
         specifier: ^3.0.4
         version: 3.0.4(@types/node@22.13.0)
 
-  packages/amm:
+  packages/amm-sdk:
     dependencies:
       '@aptos-labs/ts-sdk':
         specifier: ^1.33.2
         version: 1.33.2
       '@razorlabs/swap-sdk-core':
         specifier: workspace:*
-        version: link:../core
+        version: link:../core-sdk
       big.js:
         specifier: 6.2.2
         version: 6.2.2
@@ -52,7 +52,7 @@ importers:
         specifier: 6.2.2
         version: 6.2.2
 
-  packages/core:
+  packages/core-sdk:
     dependencies:
       big.js:
         specifier: 6.2.2
