@@ -1,9 +1,5 @@
 import { AccountAddress } from '@aptos-labs/ts-sdk'
-import { Percent, Token } from '@razorlabs/swap-sdk-core'
-
-export enum ChainId {
-  BARDOCK_TESTNET = 250,
-}
+import { ChainId, Percent, Token } from '@razorlabs/swap-sdk-core'
 
 export const ZERO_PERCENT = new Percent('0')
 export const ONE_HUNDRED_PERCENT = new Percent('1')
@@ -16,6 +12,7 @@ export const FACTORY_ADDRESS = `${AMM_MODULE_ADDRESS}::amm_factory`
 
 export const FACTORY_ADDRESS_MAP = {
   [ChainId.BARDOCK_TESTNET]: FACTORY_ADDRESS,
+  [ChainId.MAINNET]: FACTORY_ADDRESS,
 }
 
 export const WMOVE = {
@@ -27,10 +24,19 @@ export const WMOVE = {
     'Move Coin',
     'https://movementlabs.xyz',
   ),
+  [ChainId.MAINNET]: new Token(
+    ChainId.MAINNET,
+    AccountAddress.A.toStringLong(),
+    8,
+    'MOVE',
+    'Move Coin',
+    'https://movementlabs.xyz',
+  ),
 }
 
 export const WNATIVE: Record<number, Token> = {
   [ChainId.BARDOCK_TESTNET]: WMOVE[ChainId.BARDOCK_TESTNET],
+  [ChainId.MAINNET]: WMOVE[ChainId.MAINNET],
 }
 
 export const NATIVE: Record<
@@ -42,6 +48,11 @@ export const NATIVE: Record<
   }
 > = {
   [ChainId.BARDOCK_TESTNET]: {
+    name: 'Move Coin',
+    symbol: 'MOVE',
+    decimals: 8,
+  },
+  [ChainId.MAINNET]: {
     name: 'Move Coin',
     symbol: 'MOVE',
     decimals: 8,

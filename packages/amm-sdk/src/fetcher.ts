@@ -1,8 +1,8 @@
 import { Pair } from './entities/pair'
 import invariant from 'tiny-invariant'
-import { AMM_MODULE_ADDRESS, ChainId } from './constants'
+import { AMM_MODULE_ADDRESS } from './constants'
 import { Aptos, AptosConfig, InputViewFunctionData } from '@aptos-labs/ts-sdk'
-import { CurrencyAmount, Token } from '@razorlabs/swap-sdk-core'
+import { ChainId, CurrencyAmount, Token } from '@razorlabs/swap-sdk-core'
 
 export function getNetworkRPCUrl(chainId: ChainId) {
   switch (chainId) {

@@ -1,7 +1,7 @@
 import invariant from 'tiny-invariant'
-import { Currency, NativeCurrency, Token } from '@razorlabs/swap-sdk-core'
+import { ChainId, Currency, NativeCurrency, Token } from '@razorlabs/swap-sdk-core'
 
-import { ChainId, WMOVE } from './constants'
+import { WMOVE } from './constants'
 
 /**
  * Ether is the main usage of a 'native' currency, i.e. for Ethereum mainnet and all testnets
@@ -12,7 +12,7 @@ export class Move extends NativeCurrency {
   }
 
   public get wrapped(): Token {
-    const wmove = WMOVE[this.chainId as ChainId.BARDOCK_TESTNET]
+    const wmove = WMOVE[this.chainId as ChainId.MAINNET |ChainId.BARDOCK_TESTNET]
 
     invariant(!!wmove, 'WRAPPED')
 

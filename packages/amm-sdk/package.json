@@ -35,7 +35,7 @@
     "singleQuote": true
   },
   "dependencies": {
-    "@aptos-labs/ts-sdk": "^1.33.2",
+    "@aptos-labs/ts-sdk": "^1.35.0",
     "@razorlabs/swap-sdk-core": "workspace:*",
     "big.js": "6.2.2",
     "decimal.js-light": "2.5.1",
@@ -47,5 +47,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "peerDependencies": {
+    "axios": "^1.7.9"
   }
 }

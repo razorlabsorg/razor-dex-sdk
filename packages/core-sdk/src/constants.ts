@@ -12,6 +12,11 @@ export enum Rounding {
   ROUND_UP,
 }
 
+export enum ChainId {
+  MAINNET = 126,
+  BARDOCK_TESTNET = 250,
+}
+
 export const MINIMUM_LIQUIDITY = 1000n
 
 // exports for internal consumption
