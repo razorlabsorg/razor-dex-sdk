@@ -4,9 +4,9 @@ import { ChainId, Percent, Token } from '@razorlabs/swap-sdk-core'
 export const ZERO_PERCENT = new Percent('0')
 export const ONE_HUNDRED_PERCENT = new Percent('1')
 
-export const AMM_MODULE_ADDRESS = '0xd7f96eefaebffd142905a66d68ea836927b56a95cb424e945ef28cd9353a5425'
+export const AMM_MODULE_ADDRESS = '0xc4e68f29fa608d2630d11513c8de731b09a975f2f75ea945160491b9bfd36992'
 
-export const AMM_SIGNER = '0xe4ee955f63c300c35b62d74ad7f2784c3712b7125d99261fde503663fe492c0f'
+export const AMM_SIGNER = '0xf317511756cb5bd755a7456ad900974645788926742b39d81771e17cd54b1c80'
 
 export const FACTORY_ADDRESS = `${AMM_MODULE_ADDRESS}::amm_factory`
 
