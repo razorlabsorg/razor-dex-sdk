@@ -4,7 +4,7 @@ import { ChainId, Currency, NativeCurrency, Token } from '@razorlabs/swap-sdk-co
 import { WMOVE } from './constants'
 
 /**
- * Ether is the main usage of a 'native' currency, i.e. for Ethereum mainnet and all testnets
+ * Move is the main usage of a 'native' currency, i.e. for Movement mainnet and all testnets
  */
 export class Move extends NativeCurrency {
   protected constructor(chainId: number) {
