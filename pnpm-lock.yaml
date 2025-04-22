@@ -90,6 +90,28 @@ importers:
         specifier: 6.2.2
         version: 6.2.2
 
+  packages/router-sdk:
+    dependencies:
+      '@aptos-labs/ts-sdk':
+        specifier: ^1.35.0
+        version: 1.35.0(axios@1.7.9)(got@11.8.6)
+      '@razorlabs/amm-sdk':
+        specifier: workspace:*
+        version: link:../amm-sdk
+      '@razorlabs/clamm-sdk':
+        specifier: workspace:*
+        version: link:../clamm-sdk
+      '@razorlabs/swap-sdk-core':
+        specifier: workspace:*
+        version: link:../core-sdk
+      tiny-invariant:
+        specifier: ^1.3.3
+        version: 1.3.3
+    devDependencies:
+      tsup:
+        specifier: ^8.2.4
+        version: 8.3.6(postcss@8.4.49)(typescript@5.7.3)
+
 packages:
 
   '@aptos-labs/aptos-cli@1.0.2':

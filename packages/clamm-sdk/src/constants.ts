@@ -2,7 +2,8 @@ import { ChainId } from '@razorlabs/swap-sdk-core'
 
 const ROUTER_MODULE = 'clamm_router'
 
-export const CLAMM_ADDRESS = '0xbbcafa9a62a156cb38480e90d22415b7033faebf01df69d3ca1ed893b6c6ba59'
+export const CLAMM_ADDRESS = '0x762ede3a7d66b0e13ffebe62613ead8b70c7c276b1e822e41ef71563f3b30ed9'
+export const CLAMM_SIGNER = '0x6f9d0db9822035a2e8a195308ab8a9b8645ac97a6ea2ac336ceea46c473494ac'
 export const CLAMM_ROUTER_ADDRESS = `${CLAMM_ADDRESS}::${ROUTER_MODULE}`
 
 export const FACTORY_ADDRESSES = {

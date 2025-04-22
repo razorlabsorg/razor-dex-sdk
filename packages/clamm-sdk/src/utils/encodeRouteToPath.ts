@@ -8,15 +8,15 @@ const FEE_SIZE = 3
 export function encodePacked(inputs: any[]): Uint8Array {
   const encodedPacked: number[] = []
 
-  for (let i = 0; i < inputs.length; i++) {
-    if (typeof inputs[i] === 'string') {
-      const encodedString = new MoveString(inputs[i]).bcsToBytes()
+  for (const input of inputs) {
+    if (typeof input === 'string') {
+      const encodedString = new MoveString(input).bcsToBytes()
       for (let j = 0; j < ADDR_SIZE; j++) {
         encodedPacked.push(encodedString[j])
       }
-    } else if (typeof inputs[i] === 'number') {
+    } else if (typeof input === 'number') {
       const feeBytes = new Uint8Array(8)
-      new DataView(feeBytes.buffer).setBigUint64(0, BigInt(inputs[i]), true)
+      new DataView(feeBytes.buffer).setBigUint64(0, BigInt(input), true)
       for (let j = 0; j < FEE_SIZE; j++) {
         encodedPacked.push(feeBytes[j])
       }

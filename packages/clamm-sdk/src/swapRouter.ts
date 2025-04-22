@@ -1,4 +1,4 @@
-import { BigintIsh, Currency, CurrencyAmount, Percent, TradeType } from '@razorlabs/swap-sdk-core'
+import { BigintIsh, Currency, Percent, TradeType } from '@razorlabs/swap-sdk-core'
 
 import invariant from 'tiny-invariant'
 import { Trade } from './entities/trade'
@@ -78,27 +78,8 @@ export abstract class SwapRouter {
       'TOKEN_OUT_DIFF',
     )
 
-    const ZERO_IN: CurrencyAmount<Currency> = CurrencyAmount.fromRawAmount(trades[0].inputAmount.currency, 0)
-    const ZERO_OUT: CurrencyAmount<Currency> = CurrencyAmount.fromRawAmount(trades[0].outputAmount.currency, 0)
-
-    const totalAmountOut: CurrencyAmount<Currency> = trades.reduce(
-      (sum, trade) => sum.add(trade.minimumAmountOut(options.slippageTolerance)),
-      ZERO_OUT,
-    )
-
-    // flag for whether a refund needs to happen
-    const inputIsNative = sampleTrade.inputAmount.currency.isNative
-
-    const totalValue: CurrencyAmount<Currency> = inputIsNative
-      ? trades.reduce((sum, trade) => sum.add(trade.maximumAmountIn(options.slippageTolerance)), ZERO_IN)
-      : ZERO_IN
-
     const recipient = options.recipient
     const deadline = BigInt(options.deadline)
-
-    let methodName: string
-    let args: Array<EntryFunctionArgumentTypes | SimpleEntryFunctionArgumentTypes>
-    let typeArgs: Array<TypeArgument>
 
     for (const trade of trades) {
       for (const { route, inputAmount, outputAmount } of trade.swaps) {

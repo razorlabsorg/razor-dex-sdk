@@ -1,11 +1,11 @@
 {
-  "name": "@razorlabs/clamm-sdk",
+  "name": "@razorlabs/router-sdk",
   "version": "1.0.11",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
-  "description": "⚒️ An SDK for building applications on top of Razor DEX CLMM",
+  "description": "⚒️ An SDK for building applications on top of Razor DEX",
   "files": [
     "dist"
   ],
@@ -42,6 +42,8 @@
   "dependencies": {
     "@aptos-labs/ts-sdk": "^1.35.0",
     "@razorlabs/swap-sdk-core": "workspace:*",
+    "@razorlabs/amm-sdk": "workspace:*",
+    "@razorlabs/clamm-sdk": "workspace:*",
     "tiny-invariant": "^1.3.3"
   }
 }
