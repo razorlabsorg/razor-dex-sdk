@@ -7,9 +7,9 @@ import { ChainId, CurrencyAmount, Token } from '@razorlabs/swap-sdk-core'
 export function getNetworkRPCUrl(chainId: ChainId) {
   switch (chainId) {
     case ChainId.BARDOCK_TESTNET:
-      return 'https://aptos.testnet.bardock.movementlabs.xyz/v1'
+      return 'https://rpc.sentio.xyz/movement-testnet/v1'
     default:
-      return 'https://aptos.testnet.bardock.movementlabs.xyz/v1'
+      return 'https://rpc.sentio.xyz/movement/v1'
   }
 }
 
@@ -18,7 +18,7 @@ export function getNetworkIndexerUrl(chainId: ChainId) {
     case ChainId.BARDOCK_TESTNET:
       return 'https://rpc.sentio.xyz/movement-testnet-indexer/v1/graphql'
     default:
-      return 'https://rpc.sentio.xyz/movement-testnet-indexer/v1/graphql'
+      return 'https://rpc.sentio.xyz/movement-indexer/v1/graphql'
   }
 }
 
